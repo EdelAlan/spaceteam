@@ -138,7 +138,7 @@ const coaches = ref([
   background-size: cover;
 
   & > div {
-    color: #fff;
+    color: #eeece7;
     font-size: 67px;
     text-align: center;
   }

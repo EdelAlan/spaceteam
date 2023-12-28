@@ -13,7 +13,7 @@
 
 <style>
 a {
-  color: #fff;
+  color: #eeece7;
 }
 
 .header {
