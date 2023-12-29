@@ -215,6 +215,12 @@ onMounted(() => {
         &:hover {
           transform: scale(1.05);
         }
+
+        @media only screen and (max-width: 768px) {
+          padding: 10px;
+          border-radius: 50%;
+          background: #000;
+        }
       }
 
       &-text-left__location {
@@ -228,17 +234,64 @@ onMounted(() => {
         margin-top: 20px;
         padding-top: 20px;
         border-top: 1px solid hsla(0,0%,100%,.3);
+
+        @media only screen and (max-width: 768px) {
+          font-size: 12px;
+        }
+      }
+
+      @media only screen and (max-width: 768px) {
+        position: initial;
+        overflow-y: auto;
+        height: 100%;
+        background: #000;
+        padding: 10px 10px 100px 10px;
+
+        .view-training-info-img {
+          display: none;
+        }
+        
+        .view-training-info-img-blur {
+          display: none;
+        }
+
+        .view-training-info__btn__book {
+          display: block;
+          position: fixed;
+          bottom: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #000;
+          width: 90%;
+        }
+
+        .view-training-info-text-left__share {
+          display: flex;
+        }
       }
     }
 
     &-img  {
-      height: 100%;
+      height: 30%;
+
+      @media only screen and (max-width: 768px) {
+        z-index: 1;
+        
+        & > img {
+          border-radius: 0;
+        }
+      }
     }
   }
 
   &:hover {
     filter: unset !important;
     cursor: default !important;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

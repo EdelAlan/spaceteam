@@ -705,5 +705,9 @@ a {
     font-size: 18px;
     line-height: 24px;
   }
+
+  @media only screen and (max-width: 768px) {
+    padding: 20px 0;
+  }
 }
 </style>
