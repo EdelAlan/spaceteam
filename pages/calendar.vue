@@ -475,6 +475,10 @@ a {
           border-radius: 10px;
         }
       }
+
+      @media only screen and (max-width: 768px) {
+        overflow: hidden;
+      }
     }
 
     &-info {
