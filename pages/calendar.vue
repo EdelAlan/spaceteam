@@ -70,6 +70,10 @@
                   {{ training.date }}
                 </div>
                 <div>{{ training.time }}</div>
+                <a
+                  class="view-training-info-text-left__location"
+                  :href="training.location"
+                >{{ training.locationName }}</a>
 
                 <div
                   class="view-training-info-text-left__share"
@@ -352,6 +356,10 @@ a {
       width: 40px;
       height: 40px;
     }
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   &-header {
@@ -389,7 +397,24 @@ a {
         &.active {
           border-bottom-color: #eeece7;
         }
+
+        @media only screen and (max-width: 768px) {
+          & > div {
+            &:first-child {
+              font-size: 12px;
+              line-height: 16px;
+            }
+          }
+        }  
       }
+
+      @media only screen and (max-width: 768px) {
+        padding: 10px 0;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      padding-top: 0;
     }
   }
 
@@ -398,6 +423,10 @@ a {
     flex-direction: column;
     gap: 100px;
     padding: 0 20px;
+
+    @media only screen and (max-width: 768px) {
+      gap: 20px;
+    }
   }
 
   &-day {
@@ -410,6 +439,16 @@ a {
       line-height: 56px;
       padding-bottom: 20px;
       text-transform: capitalize;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 18px;
+        line-height: 18px;
+        padding-bottom: 0;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      gap: 10px;
     }
   }
 
@@ -431,6 +470,10 @@ a {
         width: 100%;
         object-fit: cover;
         border-radius: 10px 0 0 10px;
+
+        @media only screen and (max-width: 768px) {
+          border-radius: 10px;
+        }
       }
     }
 
@@ -453,6 +496,10 @@ a {
           width: 100%;
           object-fit: cover;
           border-radius: 0 10px 10px 0;
+
+          @media only screen and (max-width: 768px) {
+            display: none;
+          }
         }
 
         &-blur {
@@ -465,6 +512,10 @@ a {
           backdrop-filter: blur(80px);
           height: 100%;
           border-radius: 0 10px 10px 0;
+
+          @media only screen and (max-width: 768px) {
+            border-radius: 0 0 10px 10px;
+          }
         }
       }
 
@@ -508,6 +559,28 @@ a {
                 transform: translate(3px);
               }
             }
+
+            @media only screen and (max-width: 768px) {
+              display: none;
+            }
+          }
+
+          &__location {
+            display: none;
+
+            @media only screen and (max-width: 768px) {
+              display: block;
+            }
+          }
+
+          @media only screen and (max-width: 768px) {
+            font-size: 14px;
+            line-height: 18px;
+
+            & > div:not(:first-of-type) {
+              font-size: 12px;
+              line-height: 14px;
+            }
           }
         }
 
@@ -520,6 +593,11 @@ a {
             width: 100%;
             height: 100%;
             object-fit: cover;
+          }
+
+          @media only screen and (max-width: 768px) {
+            width: 60px;
+            height: 60px;
           }
         }
       }
@@ -556,8 +634,27 @@ a {
               transform: translate(3px);
             }
           }
+
+          @media only screen and (max-width: 768px) {
+            display: none;
+          }
         }
       }
+
+      @media only screen and (max-width: 768px) {
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      height: 290px;
+      position: relative;
     }
   }
 }
