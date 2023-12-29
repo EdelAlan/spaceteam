@@ -137,10 +137,18 @@ const coaches = ref([
   background-repeat: no-repeat;
   background-size: cover;
 
+  @media only screen and (max-width: 768px) {
+    padding: 0 10px;
+  }
+
   & > div {
     color: #eeece7;
     font-size: 67px;
     text-align: center;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 24px;
+    }
   }
   
   &:first-of-type {
@@ -161,6 +169,13 @@ const coaches = ref([
   justify-content: center;
   align-items: flex-start;
   padding: 100px 20px;
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 20px 10px;
+    align-items: center;
+    gap: 20px;
+  }
 }
 
 .article {
@@ -173,6 +188,10 @@ const coaches = ref([
     &__main {
       font-size: 20px;
       line-height: 111%;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 16px;
+      }
     }
 
     &__sub {
@@ -181,6 +200,14 @@ const coaches = ref([
       margin-top: 4px;
       text-transform: uppercase;
       font-weight: 400;
+
+      @media only screen and (max-width: 768px) {
+        font-size: 11px;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      margin: 10px 0 10px 0;
     }
   }
 
@@ -188,6 +215,11 @@ const coaches = ref([
     padding-right: 20px;
     font-size: 20px;
     line-height: 111%;
+
+    @media only screen and (max-width: 768px) {
+      font-size: 11px;
+      padding-right: 0;
+    }
   }
 
   &-img {
@@ -200,6 +232,14 @@ const coaches = ref([
       height: 100%;
       object-fit: cover;
     }
+
+    @media only screen and (max-width: 768px) {
+      aspect-ratio: 2/1;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
   }
 }
 </style>

@@ -53,6 +53,17 @@ a {
     font-size: 12px;
     line-height: 1.15;
     text-transform: uppercase;
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    padding: 20px 5px 0;
+    font-size: 16px;
+    line-height: 18px;
+    flex-direction: column;
   }
 }
 </style>
