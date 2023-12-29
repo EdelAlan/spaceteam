@@ -5,8 +5,11 @@
       class="view-logo"
       href="/"
     >
-      <div>Space</div>
-      <div style="margin-left: 10px;">Team</div>
+      <img src="/logo.png">
+      <div>
+        <div>Space</div>
+        <div style="margin-left: 10px;">Team</div>
+      </div>
     </a>
 
     <nav class="view-header">
@@ -16,9 +19,9 @@
         class="view-header__day"
       >
         <a 
+          ref="menuRefs"
           class="view-header__day-inner"
           :href="`#${weekDay.id}`"
-          ref="menuRefs"
         >
           <div>{{ weekDay.weekDayShort }}</div>
           <div>{{ weekDay.dayOfMonth }}</div>
@@ -62,8 +65,70 @@
               <div class="view-training-info-text-left">
                 <div>{{ training.name }}</div>
                 <div>{{ training.coach }}</div>
-                <div class="view-training-info-text-left__date">{{ training.date }}</div>
+                <div class="view-training-info-text-left__date">
+                  {{ training.date }}
+                </div>
                 <div>{{ training.time }}</div>
+
+                <div
+                  class="view-training-info-text-left__share"
+                  @click.prevent="onShareClick(training)"
+                >
+                  <svg
+                    data-v-23030b10=""
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    role="presentation"
+                    viewBox="0 0 24 24"
+                  ><g
+                    name="share-2"
+                    width="20"
+                    height="20"
+                    fill="none"
+                    hover=""
+                  ><rect
+                    x="5"
+                    y="11"
+                    width="1"
+                    height="10"
+                    fill="currentColor"
+                  /><rect
+                    x="18"
+                    y="20"
+                    width="1"
+                    height="12"
+                    transform="rotate(90 18 20)"
+                    fill="currentColor"
+                  /><rect
+                    x="18"
+                    y="11"
+                    width="1"
+                    height="10"
+                    fill="currentColor"
+                  /><rect
+                    x="11.5"
+                    y="3.65686"
+                    width="1"
+                    height="11.3431"
+                    fill="currentColor"
+                  /><rect
+                    x="11.2918"
+                    y="3.70711"
+                    width="1"
+                    height="6.3868"
+                    transform="rotate(-45 11.2918 3.70711)"
+                    fill="currentColor"
+                  /><rect
+                    x="12.0011"
+                    y="3"
+                    width="1"
+                    height="6.38684"
+                    transform="rotate(45 12.0011 3)"
+                    fill="currentColor"
+                  /></g></svg>
+                </div>
               </div>
 
               <div class="view-training-info-text-coach">
@@ -83,10 +148,25 @@
       </div>
     </div>
 
-    <div v-if="isShowModal" class="modal__training">
+    <div
+      v-if="isShowModal"
+      class="modal__training"
+      @click="onBlurClick($event)"
+    >
       <div class="modal__inner">
-        <NuxtPage :training="selectedTraining" />
+        <NuxtPage
+          :training="selectedTraining"
+          @close="closeModal()"
+          @share="onShareClick(selectedTraining)"
+        />
       </div>
+    </div>
+
+    <div
+      v-show="isCopied"
+      class="copy-success"
+    >
+      <span>Ссылка скопирована!</span>
     </div>
   </main>
 </template>
@@ -95,6 +175,7 @@
 import { interval, addDays, eachDayOfInterval, format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 
+// Init header dates
 function formatDate(date, formatStr) {
   return format(
     date,
@@ -104,12 +185,10 @@ function formatDate(date, formatStr) {
     }
   )
 }
-
 const daysInterval = interval(
   new Date,
   addDays(new Date, 6)
 )
-
 const weekDays = ref(eachDayOfInterval(daysInterval).map((day, id) => {
   return {
     id,
@@ -120,11 +199,39 @@ const weekDays = ref(eachDayOfInterval(daysInterval).map((day, id) => {
   }
 }))
 
+// Training modal
+const route = useRoute()
+const router = useRouter();
+const isShowModal = computed(() => route?.params?.id && selectedTraining.value)
+
+const selectedTraining = ref(null)
+function selectTrainingModal(training) {
+  selectedTraining.value = training
+}
+
+function closeModal() {
+  selectTrainingModal(null)
+  router.replace({ path: '/calendar' })
+}
+
+function onBlurClick(event) {
+  if (event?.target?.className?.includes('modal__training'))
+    closeModal()
+}
+
+const isCopied = ref(false)
+function onShareClick(training) {
+  isCopied.value = true
+  const link = `${window.location.origin}/calendar/${training.id}`
+  navigator.clipboard.writeText(link)
+  setTimeout(() => isCopied.value = false, 5000)
+}
+
+// Scroll header behavior
 const showHeaderLogo = ref(false)
 const lastId = ref(null)
 const daysRefs = ref([])
 const menuRefs = ref([])
-
 function onScroll () {
   // header logo
   const header = document.getElementsByClassName('header')[0]
@@ -156,14 +263,7 @@ function onScroll () {
   }
 }
 
-const selectedTraining = ref(null)
-function selectTrainingModal(training) {
-  selectedTraining.value = training
-}
-
-const route = useRoute()
-const isShowModal = computed(() => route?.params?.id && selectedTraining.value)
-
+// Lifecycle hooks
 onMounted(() => {
   window.addEventListener('scroll', onScroll)
 
@@ -178,7 +278,9 @@ onMounted(() => {
         name: 'Trail Running',
         coach: 'A. Burasheva',
         coachImgUrl: '/anara.jpg',
-        location: '',
+        location: 'https://go.2gis.com/2fi9w',
+        locationName: 'Фонтан на Медео',
+        description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
       },
       {
         id: 1,
@@ -188,7 +290,9 @@ onMounted(() => {
         name: 'Road Racing',
         coach: 'G. Zelenskiy',
         coachImgUrl: 'https://instagram.fala5-2.fna.fbcdn.net/v/t39.30808-6/403618445_18398683057017825_712476465359051504_n.jpg?stp=dst-jpg_e15_s480x480&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDE0NDAuc2RyIn0&_nc_ht=instagram.fala5-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=M0C-cGzL6kwAX9WOI1b&edm=AOQ1c0wAAAAA&ccb=7-5&oh=00_AfDVI9KZkCHGOjI2JTNZwC-1MRFslJWAKyfcpT8_wcBGcg&oe=656EEDF5&_nc_sid=8b3546',
-        location: '',
+        location: 'https://go.2gis.com/5wj0q',
+        locationName: 'Цетнральный стадион',
+        description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
       },
     ]
   }))
@@ -204,6 +308,19 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
+})
+
+const scrollPosition = ref(0)
+onBeforeRouteUpdate((to) => {
+  if (to.name === 'calendar-id') {
+    scrollPosition.value = window.scrollY
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'auto';
+    window.scrollTo({
+      top: scrollPosition.value,
+    })
+  }
 })
 </script>
 
@@ -221,11 +338,19 @@ a {
   color: #eeece7;
 
   &-logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     position: fixed;
-    top: 20px;
+    top: 40px;
     left: 20px;
     z-index: 11;
     cursor: pointer;
+
+    & > img {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   &-header {
@@ -354,6 +479,35 @@ a {
           &__date {
             text-transform: capitalize;
           }
+
+          &__share {
+            margin-top: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+
+            position: relative;
+            align-self: flex-end;
+            color: #eeece7;
+            border: 1px solid #eeece7;
+            font-size: 18px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s,color .3s;
+            background: transparent;
+            cursor: pointer;
+
+            &:hover {
+              background: #eeece7;
+              color: #000;
+              
+              & > span {
+                transform: translate(3px);
+              }
+            }
+          }
         }
 
         &-coach {
@@ -434,6 +588,24 @@ a {
 
   &__training {
     @extend .modal;
+  }
+}
+
+.copy-success {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  z-index: 301;
+
+  & > span {
+    color: #eeece7;
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 </style>

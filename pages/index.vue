@@ -72,7 +72,7 @@
     </section>
 
     <div class="parallax">
-      <div>
+      <div style="background: #000;">
         Привет, я текст
       </div>
     </div>
@@ -166,10 +166,6 @@ const coaches = ref([
 .article {
   width: calc(100%/3);
   overflow: hidden;
-
-  &-index {
-
-  }
 
   &-label {
     margin: 10px 0 50px 0;
