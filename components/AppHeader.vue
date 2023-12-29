@@ -5,30 +5,29 @@
   >
     <div class="header-links">
       <NuxtLink 
-        v-for="(item, idx) in items"
-        :key="`${item.to ?? item.link}${idx}`"
-        :to="item.to ?? item.link"
-        :target="item.to ? '' : '_blank'"
+        v-for="item in headerLinks"
+        :key="item.link"
+        :to="item.link"
+        target="_blank"
       >
         {{ item.title }} →
       </NuxtLink>
     </div>
     <div>
       <a href="/">
-        Space Team
+        Space Community Runners
       </a>
     </div>
   </header>
 </template>
 
 <script setup>
-const props = defineProps({
-  items: {
-    type: Array,
-    default: () => []
+const headerLinks = ref([
+  {
+    title: 'Instagram',
+    link: 'https://www.instagram.com/spaceteamalmaty/',
   }
-})
-const { items } = props
+])
 </script>
 
 <style lang="scss">

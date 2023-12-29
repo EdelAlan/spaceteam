@@ -8,7 +8,8 @@
       <img src="/logo.png">
       <div>
         <div>Space</div>
-        <div style="margin-left: 10px;">Team</div>
+        <div style="margin-left: 10px;">Community</div>
+        <div style="margin-left: 20px;">Runners</div>
       </div>
     </a>
 
@@ -340,7 +341,7 @@ a {
   &-logo {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     position: fixed;
     top: 40px;
     left: 20px;
