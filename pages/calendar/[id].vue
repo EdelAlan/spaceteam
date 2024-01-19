@@ -272,9 +272,11 @@ onMounted(() => {
     }
 
     &-img  {
-      height: 30%;
+      height: 100%;
+      max-height: 600px;
 
       @media only screen and (max-width: 768px) {
+        height: 30%;
         z-index: 1;
         
         & > img {
@@ -285,7 +287,7 @@ onMounted(() => {
   }
 
   &:hover {
-    filter: unset !important;
+    box-shadow: none !important;
     cursor: default !important;
   }
 

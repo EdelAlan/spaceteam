@@ -1,12 +1,12 @@
 <template>
   <footer>
     <div class="links">
-      <NuxtLink to="/">
+      <!-- <NuxtLink to="/">
         ГЛАВНАЯ →
       </NuxtLink>
       <NuxtLink to="/calendar">
         РАСПИСАНИЕ →
-      </NuxtLink>
+      </NuxtLink> -->
       <NuxtLink
         to="https://www.instagram.com/spaceteamalmaty/"
         target="_blank"

@@ -12,9 +12,16 @@
 * {
   font-family: 'Montserrat', sans-serif;
   user-select: none;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
+  position: relative;
   margin: 0;
   background: #000;
 

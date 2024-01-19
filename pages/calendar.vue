@@ -23,6 +23,7 @@
           ref="menuRefs"
           class="view-header__day-inner"
           :href="`#${weekDay.id}`"
+          @click.prevent="onClickAnchor(weekDay.id)"
         >
           <div>{{ weekDay.weekDayShort }}</div>
           <div>{{ weekDay.dayOfMonth }}</div>
@@ -177,7 +178,7 @@
 </template>
 
 <script setup>
-import { interval, addDays, eachDayOfInterval, format } from 'date-fns'
+import { getDay, interval, addDays, eachDayOfInterval, format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 
 // Init header dates
@@ -237,7 +238,7 @@ const showHeaderLogo = ref(false)
 const lastId = ref(null)
 const daysRefs = ref([])
 const menuRefs = ref([])
-function onScroll () {
+function onScroll() {
   // header logo
   const header = document.getElementsByClassName('header')[0]
   const rect = header.getBoundingClientRect()
@@ -267,40 +268,173 @@ function onScroll () {
     });
   }
 }
+function onClickAnchor(elId) {
+  const el = daysRefs.value.find(elDay => +elDay.id === +elId)
+  const y = el.getBoundingClientRect().top + window.scrollY - 100;
+  window.scrollTo({
+    top: y,
+    behavior: 'smooth'
+  })
+}
+
+const trainingListAlmas = ref([
+  // Вт, Чт
+  {
+    id: 0,
+    imgSrc: '/gandi.jpeg',
+    weekDays: [2, 4],
+    time: '19:00',
+    name: 'S89 База',
+    coach: 'A. Salimbayev',
+    coachImgUrl: '/almaz.jpeg',
+    location: 'https://go.2gis.com/8ut2c',
+    locationName: 'Парк Ганди',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+  // Пн Ср Пт
+  {
+    id: 1,
+    imgSrc: '/almaz_train.jpeg',
+    weekDays: [1, 3, 5],
+    time: '7:00',
+    name: 'S89 База',
+    coach: 'A. Salimbayev',
+    coachImgUrl: '/almaz.jpeg',
+    location: 'https://go.2gis.com/8ut2c',
+    locationName: 'Парк Ганди',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+  // Сб
+  {
+    id: 2,
+    imgSrc: '/almaz_train_2.jpeg',
+    weekDays: [6],
+    time: '19:00',
+    name: 'Общая тренировка',
+    coach: 'A. Salimbayev',
+    coachImgUrl: '/almaz.jpeg',
+    location: 'https://go.2gis.com/8ut2c',
+    locationName: 'Разные локации',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+])
+const trainingListAnar = ref([
+  // Ср
+  {
+    id: 3,
+    imgSrc: '/anara_train_2.jpeg',
+    weekDays: [3],
+    time: '7:00',
+    name: 'Trail Running',
+    coach: 'A. Burasheva',
+    coachImgUrl: '/anara_1.jpeg',
+    location: '',
+    locationName: 'Разные локации',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+  // Сб
+  {
+    id: 4,
+    imgSrc: '/anara_train.jpeg',
+    weekDays: [6],
+    time: '8:00',
+    name: 'Trail Running',
+    coach: 'A. Burasheva',
+    coachImgUrl: '/anara_1.jpeg',
+    location: '',
+    locationName: 'Горные локации',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+])
+const trainingListKanat = ref([
+  // Вт, Чт
+  {
+    id: 5,
+    imgSrc: '/kanat_train.jpeg',
+    weekDays: [2, 4],
+    time: '19:00',
+    name: 'Road Running',
+    coach: 'K. Juzbayev',
+    coachImgUrl: '/kanat.jpeg',
+    location: '',
+    locationName: 'Центральный стадион, манеж, дворец школьников (зависимости от плана и погоды)',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+])
+const trainingListGena = ref([
+  // Пн
+  {
+    id: 6,
+    imgSrc: 'https://images.unsplash.com/photo-1571008745438-2c05b20d8ef2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    weekDays: [1],
+    time: '19:00',
+    name: 'Силовая',
+    coach: 'G. Zelenskiy',
+    coachImgUrl: '/gena.jpeg',
+    location: 'https://go.2gis.com/5wj0q',
+    locationName: 'Центральный стадион',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+  // Пт
+  {
+    id: 6,
+    imgSrc: 'https://images.unsplash.com/photo-1571008745438-2c05b20d8ef2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    weekDays: [5],
+    time: '19:00',
+    name: 'Горки',
+    coach: 'G. Zelenskiy',
+    coachImgUrl: '/gena.jpeg',
+    location: 'https://go.2gis.com/5wj0q',
+    locationName: 'Центральный стадион',
+    description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
+  },
+])
 
 // Lifecycle hooks
 onMounted(() => {
   window.addEventListener('scroll', onScroll)
+  weekDays.value = weekDays.value.map(weekDay => {
+    const day = getDay(weekDay.day)
+    const trainingList = []
+    
+    trainingListAlmas.value.forEach(training => {
+      if (training.weekDays.includes(day)) {
+        trainingList.push({
+          ...training,
+          date: formatDate(weekDay.day, 'EEE, LLL d').replace(/\./gm, ''),
+        })
+      }
+    })
+    trainingListAnar.value.forEach(training => {
+      if (training.weekDays.includes(day)) {
+        trainingList.push({
+          ...training,
+          date: formatDate(weekDay.day, 'EEE, LLL d').replace(/\./gm, ''),
+        })
+      }
+    })
+    trainingListKanat.value.forEach(training => {
+      if (training.weekDays.includes(day)) {
+        trainingList.push({
+          ...training,
+          date: formatDate(weekDay.day, 'EEE, LLL d').replace(/\./gm, ''),
+        })
+      }
+    })
+    trainingListGena.value.forEach(training => {
+      if (training.weekDays.includes(day)) {
+        trainingList.push({
+          ...training,
+          date: formatDate(weekDay.day, 'EEE, LLL d').replace(/\./gm, ''),
+        })
+      }
+    })
 
-  weekDays.value = weekDays.value.map(weekDay => ({
-    ...weekDay,
-    trainingList: [
-      {
-        id: 0,
-        imgSrc: 'https://images.unsplash.com/photo-1456613820599-bfe244172af5?q=80&w=2674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        date: formatDate(weekDay.day, 'EEE, LLL d').replace(/\./gm, ''),
-        time: '6:30',
-        name: 'Trail Running',
-        coach: 'A. Burasheva',
-        coachImgUrl: '/anara.jpg',
-        location: 'https://go.2gis.com/2fi9w',
-        locationName: 'Фонтан на Медео',
-        description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
-      },
-      {
-        id: 1,
-        imgSrc: 'https://images.unsplash.com/photo-1571008745438-2c05b20d8ef2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        date: formatDate(weekDay.day, 'EEE, LLL d').replace(/\./gm, ''),
-        time: '7:30',
-        name: 'Road Racing',
-        coach: 'G. Zelenskiy',
-        coachImgUrl: 'https://instagram.fala5-2.fna.fbcdn.net/v/t39.30808-6/403618445_18398683057017825_712476465359051504_n.jpg?stp=dst-jpg_e15_s480x480&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDE0NDAuc2RyIn0&_nc_ht=instagram.fala5-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=M0C-cGzL6kwAX9WOI1b&edm=AOQ1c0wAAAAA&ccb=7-5&oh=00_AfDVI9KZkCHGOjI2JTNZwC-1MRFslJWAKyfcpT8_wcBGcg&oe=656EEDF5&_nc_sid=8b3546',
-        location: 'https://go.2gis.com/5wj0q',
-        locationName: 'Цетнральный стадион',
-        description: 'This whole-body workout conditions your muscles, elevates your heart rate, targets your core, all while moving your joints through a healthy range of motion. Inspired by modalities such as yoga, Pilates, barre, and bodyweight training, this is a practice in rhythmic movement to reset body and mind. Breathwork techniques, ambient heat (room is set to 80 degrees F), and sound have been intentionally curated to amplify the physiological impact of each experience.',
-      },
-    ]
-  }))
+    return {
+      ...weekDay,
+      trainingList,
+    }
+  })
 
   if (route?.params?.id) {
     selectTrainingModal(
@@ -459,7 +593,7 @@ a {
     cursor: pointer;
     
     &:hover {
-      filter: drop-shadow(0 0 20px rgba(255,255,255,.2));
+      box-shadow: 0px 0px 20px 0px rgb(255, 255, 255, 0.4);
     }
 
     &-img {

@@ -44,6 +44,7 @@ a {
   font-size: 60px;
   line-height: 56px;
   z-index: 11;
+  background-color: #000;
 
   &-links {
     position: absolute;
