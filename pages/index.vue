@@ -62,10 +62,10 @@
           </div>
         </div>
         
-        <!-- <div
+        <div
           class="article-description"
           v-html="el.description"
-        /> -->
+        />
       </article>
     </section>
 
@@ -79,25 +79,46 @@
 <script setup>
 const programs = ref([
   {
-    name: 'Heath run',
-    price: '₸55 000',
+    name: 'Community',
+    price: '₸5 000 / занятие',
     imgUrl: 'https://images.unsplash.com/photo-1616119024154-df380bfd87e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     shortDescription: 'Бег + Здоровье + Натроение',
-    description: 'Пару слов туда сюда, пару слов туда сюда, пару слов туда сюда, пару слов туда сюда<br><br>Пару слов туда сюда, пару слов туда сюда, пару слов туда сюда'
+    description: 'будь среди своих. Заряжайся энергией тех, кто знает секреты бодрости и здоровья. Ты с нами, когда тебе удобно'
   },
   {
-    name: 'Champion run',
-    price: '₸85 000',
+    name: 'Health',
+    price: '₸45 000 / месяц',
     imgUrl: 'https://images.unsplash.com/photo-1564390645033-5a70e0a6f323?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     shortDescription: 'Бег + достижения + труд',
-    description: 'Пару слов туда сюда, пару слов туда сюда, пару слов туда сюда, пару слов туда сюда<br><br>Пару слов туда сюда, пару слов туда сюда, пару слов туда сюда'
+    description: 'занимайся для здоровья. Твой организм скажет тебе «спасибо»'
   },
   {
-    name: 'Trail',
-    price: '₸55 000',
+    name: 'Base',
+    price: '₸55 000 / месяц',
     imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     shortDescription: 'горы + бег + медитация',
-    description: 'Пару слов туда сюда, пару слов туда сюда, пару слов туда сюда, пару слов туда сюда<br><br>Пару слов туда сюда, пару слов туда сюда, пару слов туда сюда'
+    description: 'заботься о себе. Сделай тренировки частью жизни и приди к своей лучшей форме'
+  },
+  {
+    name: 'Pro',
+    price: '₸85 000 / месяц',
+    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    shortDescription: 'горы + бег + медитация',
+    description: 'двигайся к своим целям. Тренируйся и улучшай результаты забег за забегом.'
+  },
+  {
+    name: 'Elite 360',
+    price: '₸500 000 / месяц',
+    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    shortDescription: 'горы + бег + медитация',
+    description: 'занимайся с комфортом. В своем темпе, по собственным потребностям и запросам'
+  },
+  {
+    name: 'Corporate',
+    price: 'Цена договарная',
+    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    shortDescription: 'горы + бег + медитация',
+    description: 'выбирай здоровые увлечения для своей команды'
   },
 ])
 
@@ -212,7 +233,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding: 100px 20px;
+  padding: 100px 150px;
   background: #eeece7;
 
   @media only screen and (max-width: 768px) {
