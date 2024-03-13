@@ -5,32 +5,38 @@
       <span style="background-color: rgba(0, 0, 0, 0.5);">Run with us!</span>
     </div>
 
-    <section class="articles_wrapper">
-      <article
-        v-for="(el, id) in coaches"
-        :key="el.name"
-        class="article"
-      >
-        <span class="article-index">{{ `0${id+1}` }}</span>
+    <section class="articles">
+      <div class="articles_label">
+        Our Coaches
+      </div>
 
-        <div class="article-img">
-          <img :src="el.imgUrl">
-        </div>
+      <div class="articles_wrapper">
+        <article
+          v-for="(el, id) in coaches"
+          :key="el.name"
+          class="article"
+        >
+          <span class="article-index">{{ `0${id+1}` }}</span>
 
-        <div class="article-label">
-          <div class="article-label__main">
-            {{ el.name }}
+          <div class="article-img">
+            <img :src="el.imgUrl">
           </div>
-          <div class="article-label__sub">
-            {{ el.shortDescription }}
+
+          <div class="article-label">
+            <div class="article-label__main">
+              {{ el.name }}
+            </div>
+            <div class="article-label__sub">
+              {{ el.shortDescription }}
+            </div>
           </div>
-        </div>
-        
-        <!-- <div
-          class="article-description"
-          v-html="el.description"
-        /> -->
-      </article>
+          
+          <!-- <div
+            class="article-description"
+            v-html="el.description"
+          /> -->
+        </article>
+      </div>
     </section>
 
     <div class="parallax parallax-second sticky" />
@@ -38,35 +44,41 @@
       <span>Leading skyrunning and road racing team in Almaty🏔</span>
     </div>
 
-    <section class="articles_wrapper">
-      <article
-        v-for="(el, id) in programs"
-        :key="el.name"
-        class="article"
-      >
-        <span class="article-index">{{ `0${id+1}` }}</span>
+    <section class="articles">
+      <div class="articles_label">
+        Program & Services
+      </div>
 
-        <div class="article-img">
-          <img :src="el.imgUrl">
-        </div>
+      <div class="articles_wrapper">
+        <article
+          v-for="(el, id) in programs"
+          :key="el.name"
+          class="article program"
+        >
+          <span class="article-index">{{ `0${id+1}` }}</span>
 
-        <div class="article-label">
-          <div class="article-label__main">
-            {{ el.name }}
+          <div class="article-img">
+            <img :src="el.imgUrl">
           </div>
-          <div class="article-label__sub">
-            {{ el.price }}
-          </div>
-          <div class="article-label__sub">
-            {{ el.shortDescription }}
-          </div>
-        </div>
+
+          <!-- <div class="article-label">
+            <div class="article-label__main">
+              {{ el.name }}
+            </div>
+            <div class="article-label__sub">
+              {{ el.price }}
+            </div>
+            <div class="article-label__sub">
+              {{ el.shortDescription }}
+            </div>
+          </div> -->
         
-        <div
-          class="article-description"
-          v-html="el.description"
-        />
-      </article>
+          <!-- <div
+            class="article-description"
+            v-html="el.description"
+          /> -->
+        </article>
+      </div>
     </section>
 
     <div class="parallax parallax-third sticky" />
@@ -81,44 +93,44 @@ const programs = ref([
   {
     name: 'Community',
     price: '₸5 000 / занятие',
-    imgUrl: 'https://images.unsplash.com/photo-1616119024154-df380bfd87e9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgUrl: '/community.jpeg',
     shortDescription: 'Бег + Здоровье + Натроение',
-    description: 'будь среди своих. Заряжайся энергией тех, кто знает секреты бодрости и здоровья. Ты с нами, когда тебе удобно'
+    description: 'Будь среди своих. Заряжайся энергией тех, кто знает секреты бодрости и здоровья. Ты с нами, когда тебе удобно'
   },
   {
     name: 'Health',
     price: '₸45 000 / месяц',
-    imgUrl: 'https://images.unsplash.com/photo-1564390645033-5a70e0a6f323?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgUrl: '/health.jpeg',
     shortDescription: 'Бег + достижения + труд',
-    description: 'занимайся для здоровья. Твой организм скажет тебе «спасибо»'
+    description: 'Занимайся для здоровья. Твой организм скажет тебе «спасибо»'
   },
   {
     name: 'Base',
     price: '₸55 000 / месяц',
-    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgUrl: '/base.jpeg',
     shortDescription: 'горы + бег + медитация',
-    description: 'заботься о себе. Сделай тренировки частью жизни и приди к своей лучшей форме'
+    description: 'Заботься о себе. Сделай тренировки частью жизни и приди к своей лучшей форме'
   },
   {
-    name: 'Pro',
+    name: 'Elite',
     price: '₸85 000 / месяц',
-    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgUrl: '/elite.jpg',
     shortDescription: 'горы + бег + медитация',
-    description: 'двигайся к своим целям. Тренируйся и улучшай результаты забег за забегом.'
+    description: 'Двигайся к своим целям. Тренируйся и улучшай результаты забег за забегом.'
   },
   {
     name: 'Elite 360',
     price: '₸500 000 / месяц',
-    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgUrl: '/elite360.jpeg',
     shortDescription: 'горы + бег + медитация',
-    description: 'занимайся с комфортом. В своем темпе, по собственным потребностям и запросам'
+    description: 'Занимайся с комфортом. В своем темпе, по собственным потребностям и запросам'
   },
   {
     name: 'Corporate',
     price: 'Цена договарная',
-    imgUrl: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=2001&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imgUrl: '/corparate.jpeg',
     shortDescription: 'горы + бег + медитация',
-    description: 'выбирай здоровые увлечения для своей команды'
+    description: 'Выбирай здоровые увлечения для своей команды'
   },
 ])
 
@@ -156,10 +168,10 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  perspective: 1px;
-  -webkit-perspective: 1px;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
 }
 
 .main {
@@ -224,32 +236,60 @@ body {
   }
 }
 
-.articles_wrapper {
+.articles {
   position: relative;
   z-index: 1;
   min-height: 100vh;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  padding: 100px 150px;
+  align-items: center;
+  padding: 100px;
   background: #eeece7;
 
+  &_label {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 111%;
+    text-transform: uppercase;
+    padding-bottom: 60px;
+  }
+  
+  &_wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
   @media only screen and (max-width: 768px) {
-    flex-direction: column;
     padding: 20px 10px;
-    align-items: center;
     gap: 20px;
   }
 }
 
 .article {
-  width: 50%;
+  width: 33%;
+  max-width: 300px;
   overflow: hidden;
 
+  &.program {
+    max-width: unset;
+    width: 40%;
+
+    & > .article-img {
+      aspect-ratio: unset;
+    }
+  }
+
   &-label {
-    margin: 10px 0 50px 0;
+    margin: 10px 0;
 
     &__main {
       font-size: 20px;
@@ -279,7 +319,7 @@ body {
 
   &-description {
     padding-right: 20px;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 111%;
 
     @media only screen and (max-width: 768px) {
